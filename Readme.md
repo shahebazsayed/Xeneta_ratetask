@@ -1,6 +1,6 @@
 **Content Of this repository:**
-DockerFile
-rates.sql
+DockerFile,
+rates.sql &
 main.py
 
 **Exicution Steps**:
