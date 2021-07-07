@@ -25,15 +25,15 @@ class rates(Resource):
         else round (avg_price, 2)
         END as average_price
         from (
-            Select count (*) total,
+            Select count(*) total,
                              day, orig_code,
-                             dest_code, avg (price) avg_price
+                             dest_code, avg(price) avg_price
         from prices pr left join ports p
-        ON pr.ORIG_CODE=P.CODE
+        ON pr.ORIG_CODE=p.CODE
         LEFT JOIN ports p1
-        on pr.DEST_CODE=P1.CODE
-        where (pr.orig_code=args.origin OR p.PARENT_SLUG=args.origin) and (pr.dest_code=args.destination OR p1.parent_slug=args.destination)
-        and day between to_date (args.date_from, 'yyyy-mm-dd') AND to_date (args.date_to, 'yyyy-mm-dd') group by day, orig_code, dest_code);'''
+        on pr.DEST_CODE=p1.CODE
+        where(pr.orig_code=args.origin OR p.PARENT_SLUG=args.origin) and (pr.dest_code=args.destination OR p1.parent_slug=args.destination)
+        and day between to_date(args.date_from,'yyyy-mm-dd') AND to_date(args.date_to,'yyyy-mm-dd') group by day, orig_code, dest_code);'''
         result = []
         date_from = datetime.strptime(args.date_from, '%Y-%m-%d')
         date_to = datetime.strptime(args.date_to, '%Y-%m-%d')
